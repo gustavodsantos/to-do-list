@@ -17,12 +17,13 @@
 
             <form method="POST" action="{% url 'base:home' %}">
                 {% csrf_token %}
-                {{form.as_p}}
+
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Descreva sua tarefa" name="nome"
                            aria-label="Descreva sua tarefa" aria-describedby="button-addon2">
                     <button type="submit" class="btn btn-primary" id="button-addon2">Salvar</button>
                 </div>
+                <small class="form-text text-muted">{{ form.nome.errors }}</small>
             </form>
         </div>
     </div>
