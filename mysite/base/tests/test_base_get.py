@@ -34,7 +34,17 @@ def lista_de_tarefas_pendentes(db):
 
 
 @pytest.fixture
-def resposta_com_lista_de_tarefas(client, lista_de_tarefas_pendentes):
+def lista_de_tarefas_feitas(db):
+    tarefas = [
+        Tarefa(nome='Tarefa 3', feita=True),
+        Tarefa(nome='Tarefa 4', feita=True),
+    ]
+    Tarefa.objects.bulk_create(tarefas)
+    return tarefas
+
+
+@pytest.fixture
+def resposta_com_lista_de_tarefas(client, lista_de_tarefas_pendentes, lista_de_tarefas_feitas):
     resp = client.get(reverse('base:home'))
     return resp
 
@@ -43,3 +53,7 @@ def test_lista_de_tarefas_presente(resposta_com_lista_de_tarefas, lista_de_taref
     for tarefa in lista_de_tarefas_pendentes:
         assertContains(resposta_com_lista_de_tarefas, tarefa.nome)
 
+
+def test_lista_de_tarefas_feitas_presente(resposta_com_lista_de_tarefas, lista_de_tarefas_feitas):
+    for tarefa in lista_de_tarefas_feitas:
+        assertContains(resposta_com_lista_de_tarefas, tarefa.nome)
