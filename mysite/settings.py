@@ -138,8 +138,8 @@ def configure_storage(has_s3_bucket: bool):
         # Muda a configuração de upload de arquivos locais para bater com produção
         # Configuração para coletar estáticos para o Nginx
         STATIC_URL = 'static/'
-        STATIC_ROOT = BASE_DIR.parent / 'todolist_docker/staticfiles/static'
-        MEDIA_ROOT = BASE_DIR.parent / 'todolist_docker/mediafiles'
+        STATIC_ROOT = BASE_DIR / 'todolist_docker/staticfiles/static'
+        MEDIA_ROOT = BASE_DIR / 'todolist_docker/mediafiles'
         MEDIA_URL = '/mediafiles/'
         # Muda a configuração de upload de arquivos locais para bater com produção
         STORAGES = {

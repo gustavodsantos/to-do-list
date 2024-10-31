@@ -4,7 +4,7 @@ services:
     container_name: nginx-todolist
     image: nginx:1.27.0
     volumes:
-      - /home/gustavo/PycharmProjects/todolist_docker/staticfiles:/usr/share/nginx/html
+      - ./staticfiles:/usr/share/nginx/html
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
       - 80:80
