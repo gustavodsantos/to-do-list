@@ -9,94 +9,78 @@
     <title>Lista de Tarefas</title>
 
     <link href="{% static 'base/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'base/css/responsive.css' %}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
+<div class="wrapper">
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-10 offset-md-1">
+                    <h1 class="mt-5 text-center text-md-start">Lista de Tarefas</h1>
 
+                    <!-- Formulário de nova tarefa -->
+                    <form method="POST" action="{% url 'base:home' %}" class="mt-4">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <textarea id="tarefa" class="form-control" placeholder="Descreva sua tarefa"
+                                      name="nome" required maxlength="500" rows="3" aria-label="Nova tarefa"></textarea>
+                            <button type="submit" class="btn btn-primary mt-2 d-block w-100">Salvar</button>
+                        </div>
+                        {% if form.nome.errors %}
+                            <small class="text-danger">{{ form.nome.errors }}</small>
+                        {% endif %}
+                    </form>
 
-    <div class="wrapper">
-        <div class="content">
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-11 offset-md-2">
-                        <h1 class="mt-5">Lista de Tarefas</h1>
-
-                        <form method="POST" action="{% url 'base:home' %}">
+                    <!-- Lista de tarefas pendentes -->
+                    <h2 class="mt-3">Tarefas Pendentes</h2>
+                    {% for tarefa in tarefa_pendentes %}
+                        <form action="{% url 'base:detalhe' tarefa_id=tarefa.id %}" method="post"
+                              class="form-tarefa mb-3">
                             {% csrf_token %}
-
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Descreva sua tarefa" name="nome"
-                                       aria-label="Descreva sua tarefa" aria-describedby="button-addon2">
-                                <button type="submit" class="btn btn-primary" id="button-addon2">Salvar</button>
+                            <div class="input-group">
+                                <textarea class="form-control" name="nome" required
+                                          rows="2">{{ tarefa.nome }}</textarea>
+                                <input type="hidden" value="checked" name="feita">
+                                <button type="submit" class="btn btn-success ms-2">Feita</button>
                             </div>
-                            <small class="form-text text-muted">{{ form.nome.errors }}</small>
                         </form>
+                        <hr class="mt-2 mb-5"> <!-- Linha separadora -->
+                    {% endfor %}
 
-                        <h2 class="mt-5">Tarefas Pendentes</h2>
-
-                        {% for tarefa in tarefa_pendentes %}
-                            <form action="{% url 'base:detalhe' tarefa_id=tarefa.id %}" method="post">
+                    <!-- Lista de tarefas concluídas -->
+                    <h2 class="mt-3">Tarefas Concluídas</h2>
+                    {% for tarefa in tarefas_feitas %}
+                        <div class="d-flex justify-content-between mb-3">
+                            <form action="{% url 'base:apagar' tarefa_id=tarefa.id %}" method="post"
+                                  class="form-apagar me-2">
                                 {% csrf_token %}
-                                <div class="input-group mb-3">
-                                    <div class="input-group-text">
-                                        <input class="form-check-input mt-0" type="checkbox" aria-label="Descreva sua tarefa">
-                                    </div>
-                                    <input type="text" class="form-control" aria-label="Descreva sua tarefa" required="required"
-                                           value="{{ tarefa.nome }}" name="nome">
-                                    <input type="hidden" value="checked" name="feita">
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-success">Marcar como Feita</button>
-                                    </div>
+                                <button type="submit" class="btn btn-danger">Apagar</button>
+                            </form>
+
+                            <form action="{% url 'base:detalhe' tarefa_id=tarefa.id %}" method="post"
+                                  class="flex-grow-1">
+                                {% csrf_token %}
+                                <div class="d-flex">
+                                    <textarea class="form-control flex-grow-1" name="nome" required
+                                              rows="2">{{ tarefa.nome }}</textarea>
+                                    <button type="submit" class="btn btn-warning ms-2">Pendente</button>
                                 </div>
                             </form>
-                        {% endfor %}
-
-                        <h2 class="mt-5">Tarefas já Concluidas</h2>
-
-                        {% for tarefa in tarefas_feitas %}
-                            <div class="row">
-                                <div class="col-1">
-                                    <form action="{% url 'base:apagar' tarefa_id=tarefa.id %}" method="post">
-                                        {% csrf_token %}
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-append">
-                                                <button type="submit" class="btn btn-danger">Apagar</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-
-                                <div class="col-11">
-                                    <form action="{% url 'base:detalhe' tarefa_id=tarefa.id %}" method="post">
-                                        {% csrf_token %}
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" placeholder="Descreva sua tarefa"
-                                                   required="required"
-                                                   aria-label="Descreva sua tarefa" name="nome" value="{{ tarefa.nome }}">
-
-                                            <div class="input-group-append">
-                                                <button type="submit" class="btn btn-warning">Marcar como Pendente</button>
-                                            </div>
-
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
-
-
-                        {% endfor %}
-                    </div>
+                        </div>
+                        <hr class="mt-1 mb-5"> <!-- Linha separadora -->
+                    {% endfor %}
                 </div>
             </div>
-
         </div>
-
-        {% include 'base/footer.html' with contato_email='gustavojuniordos@hotmail.com' only %}
-
     </div>
 
+    {% include 'base/footer.html' with contato_email='gustavojuniordos@hotmail.com' only %}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 </html>
