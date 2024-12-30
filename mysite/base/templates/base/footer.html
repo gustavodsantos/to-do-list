@@ -1,28 +1,22 @@
-{% load static %}
-{% block body %}
-<footer class=" footer main-footer pt-1 text-light">
+<footer class="footer main-footer pt-2 text-light">
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <h3>Entre em contato</h3>
-                <address>
-                    +55 43 99619-5504
-                    <br/>
-                    <a href="mailto:{{ contato_email }}">{{ contato_email }}</a>
-                </address>
+        <div class="row justify-content-between align-items-center">
+            <div class="col-12 col-md-6 text-center text-md-start">
+                <h5>Entre em contato</h5>
+                <p>
+                    Telefone: +55 43 99619-5504<br>
+                    E-mail: <a href="mailto:{{ contato_email }}" class="text-light" aria-label="Enviar e-mail para {{ contato_email }}">{{ contato_email }}</a>
+                </p>
             </div>
-        </div>
-    </div>
-
-    <div class="rights pb-1">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    Site criado por <a href="https://www.linkedin.com/in/gustavo-junior-dos-santos/" target="_blank">Gustavo
-                    Junior Dos Santos</a> {% now 'Y' %}
-                </div>
+            <div class="col-12 col-md-6 text-center text-md-start">
+                <p>
+                    Site criado por
+                    <a href="https://www.linkedin.com/in/gustavo-junior-dos-santos/" target="_blank"
+                       class="text-light" aria-label="Perfil no LinkedIn de Gustavo Junior Dos Santos">
+                        Gustavo Junior Dos Santos
+                    </a> © {% now 'Y' %}
+                </p>
             </div>
         </div>
     </div>
 </footer>
-{% endblock body %}

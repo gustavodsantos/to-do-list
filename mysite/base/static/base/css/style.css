@@ -1,24 +1,19 @@
-@charset "UTF-8";
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Passion+One&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
-
 :root {
-    --fonte1: Verdana, Geneva, Tahoma, sans-serif;
-    --fonte2: 'Passion One', cursive;
-    --fonte3: 'Sriracha', cursive;
+    --fonte-principal: 'Montserrat', sans-serif;
+    --cor-primaria: #8e0000;
+    --cor-secundaria: #00a78e;
+    --cor-texto: #293651;
 }
 
+/* Configurações globais */
 * {
     margin: 0;
     padding: 0;
-    font-family: "Montserrat", "sans-serif";
+    box-sizing: border-box;
+    font-family: var(--fonte-principal);
 }
 
-html, body {
+body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -30,144 +25,41 @@ html, body {
     min-height: 100vh;
 }
 
-/* Conteúdo principal */
 .content {
     flex: 1;
     padding: 20px;
 }
 
-/* Footer fixo na parte inferior */
 .footer {
-    background-color: #333;
-    color: white;
+    background-color: var(--cor-texto);
+    color: #fff;
     text-align: center;
     padding: 10px;
 }
 
-section {
-    height: 600px;
-}
-
-section.imagem {
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-#img {
-    background-image: url("../img/imagem_sem_fundo.png");
-    background-position: center;
-}
-
-
-.fundo {
-    background-color: #8e0000;
-    font-size: 40px;
-    font-weight: 900;
-}
-
-.color {
-    color: #ffffff;
-    font-size: 40px;
-}
-
-.center {
-    text-align: center;
-    margin-bottom: -4px;
-}
-
-.parte1 {
-    margin-left: 80px;
-    margin-top: 80px;
-    margin-right: 80px;
-}
-
-.parte2 {
-    background-color: #00a78e;
-    padding: 80px 80px;
+.footer a {
     color: #fff;
-
-}
-
-.title {
-    font-size: 48px;
-    font-weight: 900;
-    color: #111111;
-}
-
-.subtitle1 {
-    font-size: 26px;
-    color: #111111;
-    letter-spacing: 2pt;
-    padding-bottom: 20px;
-}
-
-.parte2 .subtitle1 {
-    color: #fff;
-}
-
-.parte2 .texto {
-    letter-spacing: 1.2pt;
-    margin-bottom: 26px;
-}
-
-.parte2 .projetos {
-    list-style: none;
-}
-
-.subtitle2 {
-    font-size: 22px;
-    font-weight: 300;
-    letter-spacing: 2pt;
-    padding-bottom: 15px;
-}
-
-.text {
-    color: #76778c;
-    font-size: 20px;
-    letter-spacing: 1.2pt;
-    line-height: 32px;
-    margin-bottom: 40px;
-}
-
-.btn {
-    color: white;
-    background-color: #8e0000;
-    border-radius: 5px;
-    padding: 20px 40px;
     text-decoration: none;
-    font-weight: 500;
 }
 
-.barra-progresso {
-    height: 40px;
-    width: 400px;
-    accent-color: #00a78e;
+.footer a:hover {
+    color: #111;
 }
 
-.parte3 {
-    color: #00a78e;
-    padding: 80px 80px;
+.form-tarefa input, .form-tarefa button {
+    font-size: 1rem;
 }
 
-footer {
-    margin: 0;
-    background-color: #293651;
-    color: #828a9c;
-    font-size: 14px;
+/* Ajustes gerais para textarea */
+textarea {
+    resize: none; /* Evita redimensionamento manual */
+    overflow-wrap: break-word; /* Quebra de palavra em textos longos */
+    word-wrap: break-word; /* Compatibilidade com navegadores antigos */
+    white-space: pre-wrap; /* Mantém quebras de linha */
+    font-size: 1rem;
 }
 
-footer a {
-    color: #ffffff;
-}
-
-footer a:hover {
-    color: #111111;
-}
-
-.main-footer {
-    background-color: #8e0000;
-}
-
-.rights {
-    background-color: #a80000;
+.d-flex textarea {
+    flex-grow: 1; /* Faz o textarea ocupar o espaço restante */
+    margin-right: 0.5rem; /* Espaçamento entre o textarea e o botão */
 }

@@ -1,0 +1,68 @@
+/* Para dispositivos pequenos */
+@media (max-width: 768px) {
+    .d-flex {
+        flex-direction: column; /* Empilha os itens em uma coluna */
+    }
+
+    .d-flex textarea {
+        margin-right: 0; /* Remove o espaçamento lateral para evitar deslocamento */
+        margin-bottom: 0.5rem; /* Adiciona um espaçamento inferior entre os itens */
+    }
+
+    .d-flex button {
+        width: 100%; /* O botão ocupa toda a largura em telas pequenas */
+    }
+
+    .form-tarefa, .form-apagar {
+        width: 100%;
+        margin-bottom: 0.5rem; /* Espaçamento entre os elementos */
+    }
+
+    .footer {
+        text-align: center;
+        padding: 15px 10px;
+    }
+
+    h1, h2 {
+        text-align: center;
+        font-size: 1.75rem;
+    }
+
+    .form-tarefa {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    input,
+    button {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    textarea {
+        margin-bottom: 0.5rem; /* Ajuste para espaçamento em telas pequenas */
+        width: 100%;
+    }
+}
+
+/* Para dispositivos médios */
+@media (min-width: 769px) and (max-width: 1024px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+}
+
+/* Para dispositivos grandes */
+@media (min-width: 1025px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+}
