@@ -1,21 +1,29 @@
-<footer class="footer main-footer pt-2 text-light">
+<footer class="footer main-footer py-4">
     <div class="container">
-        <div class="row justify-content-between align-items-center">
-            <div class="col-12 col-md-6 text-center text-md-start">
+        <div class="row justify-content-between align-items-center text-center text-md-start">
+            <!-- Informações de contato -->
+            <div class="col-12 col-md-6 mb-3 mb-md-0">
                 <h5>Entre em contato</h5>
                 <p>
-                    Telefone: +55 43 99619-5504<br>
-                    E-mail: <a href="mailto:{{ contato_email }}" class="text-light" aria-label="Enviar e-mail para {{ contato_email }}">{{ contato_email }}</a>
+                    <i class="fas fa-phone-alt"></i> +55 43 99619-5504<br>
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:{{ contato_email }}" aria-label="Enviar e-mail para {{ contato_email }}">
+                        {{ contato_email }}
+                    </a>
                 </p>
             </div>
-            <div class="col-12 col-md-6 text-center text-md-start">
+
+            <!-- Direitos autorais -->
+            <div class="col-12 col-md-6">
                 <p>
                     Site criado por
-                    <a href="https://www.linkedin.com/in/gustavo-junior-dos-santos/" target="_blank"
-                       class="text-light" aria-label="Perfil no LinkedIn de Gustavo Junior Dos Santos">
+                    <a href="https://www.linkedin.com/in/gustavo-junior-dos-santos/"
+                        target="_blank"
+                        aria-label="Perfil no LinkedIn de Gustavo Junior Dos Santos">
                         Gustavo Junior Dos Santos
-                    </a> © {% now 'Y' %}
+                    </a>
                 </p>
+                <small>© {% now 'Y' %} - Todos os direitos reservados</small>
             </div>
         </div>
     </div>

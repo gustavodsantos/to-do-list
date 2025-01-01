@@ -1,65 +1,228 @@
 :root {
     --fonte-principal: 'Montserrat', sans-serif;
-    --cor-primaria: #8e0000;
-    --cor-secundaria: #00a78e;
-    --cor-texto: #293651;
+    --fonte-secundaria: 'Roboto', sans-serif;
+    --cor-primaria: #8e0000; /* Vermelho principal */
+    --cor-secundaria: #00a78e; /* Verde secundário */
+    --cor-terciaria: #f0870b; /* Amarelo de alerta */
+    --cor-texto: #293651; /* Azul escuro */
+    --cor-fundo: #f9f9f9; /* Fundo mais claro */
+    --cor-fundo-container: #ffffff; /* Fundo dos containers */
+    --cor-placeholders: #aaa; /* Cinza para placeholders */
+    --cor-borda: #ddd; /* Cinza claro para bordas */
+    --cor-borda-hover: #bbb;
+    --cor-hover: #ffd8d8; /* Hover claro */
+    --sombra: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --transicao: all 0.3s ease-in-out;
 }
 
-/* Configurações globais */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: var(--fonte-principal);
 }
 
 body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    font-family: var(--fonte-principal);
+    line-height: 1.6;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
 }
 
+h1, h2, h3 {
+    font-family: var(--fonte-secundaria);
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 2.2rem;
+    color: var(--cor-primaria);
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: var(--cor-secundaria);
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p, li {
+    font-size: 1rem;
+    color: var(--cor-texto);
+}
+
+/* LINKS */
+a {
+    text-decoration: none;
+    color: var(--cor-secundaria);
+    transition: var(--transicao);
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--cor-primaria);
+}
+
+/* WRAPPER/CONTAINER */
 .wrapper {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    justify-content: space-between;
 }
 
 .content {
-    flex: 1;
     padding: 20px;
+    max-width: 1000px;
+    margin: 15px auto;
+    background: var(--cor-fundo-container);
+    border-radius: 8px;
+    box-shadow: var(--sombra);
 }
 
+/* FORMULÁRIOS */
+form {
+    background: var(--cor-fundo-container);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--sombra);
+    margin-bottom: 30px;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid var(--cor-borda);
+    font-size: 1rem;
+    border-radius: 5px;
+    color: var(--cor-texto);
+    transition: var(--transicao);
+}
+
+form input:focus,
+form textarea:focus {
+    border: 1px solid var(--cor-primaria);
+    background: var(--cor-hover);
+    outline: none;
+}
+
+form button {
+    width: 100%;
+    padding: 12px 15px;
+    background: var(--cor-primaria);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transicao);
+}
+
+form button:hover {
+    background: var(--cor-secundaria);
+}
+
+/* BOTÕES */
+button,
+.btn {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: var(--transicao);
+}
+
+.btn-primary {
+    background: var(--cor-primaria);
+}
+
+.btn-danger {
+    background: #dc3545;
+}
+
+.btn-success {
+    background: var(--cor-secundaria);
+}
+
+.btn-warning {
+    background: var(--cor-terciaria);
+}
+
+button:hover,
+.btn:hover {
+    filter: brightness(90%);
+}
+
+/* LISTA DE TAREFAS */
+.list-group-item {
+    padding: 15px 20px;
+    margin-bottom: 8px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    background: var(--cor-fundo-container);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* PAGINAÇÃO */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.pagination .page-link {
+    padding: 8px 12px;
+    color: var(--cor-primaria);
+    border: 1px solid var(--cor-borda);
+    border-radius: 5px;
+    transition: var(--transicao);
+}
+
+.pagination .page-link:hover {
+    background: var(--cor-hover);
+    color: var(--cor-texto);
+}
+
+.page-item.active .page-link {
+    background: var(--cor-primaria);
+    color: var(--cor-fundo-container);
+    border-color: var(--cor-primaria);
+}
+
+/* RODAPÉ */
 .footer {
-    background-color: var(--cor-texto);
-    color: #fff;
+    background: #20232a; /* Fundo escuro definido para contraste */
+    color: #ffffff; /* Texto branco para boa legibilidade */
+    padding: 20px 0; /* Espaçamento interno */
     text-align: center;
-    padding: 10px;
+}
+
+.footer h5 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #cccccc; /* Cor secundária para contraste */
+}
+
+.footer p,
+.footer small,
+.footer a {
+    font-size: 1rem;
+    color: #ffffff; /* Garantir texto visível */
 }
 
 .footer a {
-    color: #fff;
     text-decoration: none;
+    color: #00a78e; /* Cor secundária para links */
 }
 
 .footer a:hover {
-    color: #111;
-}
-
-.form-tarefa input, .form-tarefa button {
-    font-size: 1rem;
-}
-
-/* Ajustes gerais para textarea */
-textarea {
-    resize: none; /* Evita redimensionamento manual */
-    overflow-wrap: break-word; /* Quebra de palavra em textos longos */
-    word-wrap: break-word; /* Compatibilidade com navegadores antigos */
-    white-space: pre-wrap; /* Mantém quebras de linha */
-    font-size: 1rem;
-}
-
-.d-flex textarea {
-    flex-grow: 1; /* Faz o textarea ocupar o espaço restante */
-    margin-right: 0.5rem; /* Espaçamento entre o textarea e o botão */
+    color: #8e0000; /* Hover com cor primária */
+    text-decoration: underline;
 }

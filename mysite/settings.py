@@ -112,6 +112,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
+LOGIN_URL = '/accounts/login/'
+
 LOGOUT_REDIRECT_URL = LOGIN_REDIRECT_URL = '/'
 
 LANGUAGE_CODE = config('LANGUAGE_CODE', default='pt-br')
@@ -138,3 +140,19 @@ MEDIA_ROOT = BASE_DIR / 'docker/mediafiles'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'mysite.log',
+        },
+    },
+    'root': {
+        'handlers': ['file'],
+        'level': 'DEBUG',
+    },
+}
