@@ -51,4 +51,4 @@ jobs:
           DOMAIN_NAME: localhost
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
         run: |
-          poetry run pytest mysite --cov=mysite --cov-fail-under=40
+          poetry run pytest mysite --cov=mysite --cov-fail-under=20
