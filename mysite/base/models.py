@@ -8,8 +8,10 @@ class User(MinAbstractUser):
 
 
 class Tarefa(models.Model):
-    nome = models.CharField(max_length=128)
+    nome = models.CharField(max_length=255)
     feita = models.BooleanField(default=False)
+    criada_em = models.DateTimeField(auto_now_add=True)
+    atualizada_em = models.DateTimeField(auto_now=True)
 
     def clean(self):
         # Validações adicionais
@@ -17,6 +19,9 @@ class Tarefa(models.Model):
             raise ValidationError('O campo nome não pode ser apenas espaços.')
 
     def save(self, *args, **kwargs):
-        # Garante que o método clean seja executado antes de salvar
+        # Garante validação antes de salvar
         self.clean()
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.nome
