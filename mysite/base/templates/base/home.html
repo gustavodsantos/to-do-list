@@ -41,21 +41,21 @@
                 <div class="row mt-5">
                     <div class="col-12 col-md-10 offset-md-1">
                         <h2 class="mb-3 text-secondary">Tarefas Pendentes</h2>
-                        {% if tarefa_pendentes %}
+                        {% if tarefas_pendentes %}
                             <ul class="list-group list-group-flush mb-4">
-                                {% for tarefa in tarefa_pendentes %}
+                                {% for tarefa in tarefas_pendentes %}
                                     <li class="list-group-item d-flex justify-content-between align-items-start">
                                         <span class="flex-grow-1">{{ tarefa.nome }}</span>
                                         <div class="btn-group ms-3">
                                             <!-- Botão Feita -->
-                                            <form action="{% url 'base:detalhe' tarefa_id=tarefa.id %}" method="POST" class="me-1">
+                                            <form action="{% url 'base:marcar_como_feita' tarefa_id=tarefa.id %}" method="POST">
                                                 {% csrf_token %}
                                                 <button type="submit" class="btn btn-success btn-sm">
                                                     <i class="fas fa-check"></i> Feita
                                                 </button>
                                             </form>
                                             <!-- Botão Apagar -->
-                                            <form action="{% url 'base:apagar' tarefa_id=tarefa.id %}" method="POST">
+                                            <form action="{% url 'base:apagar_tarefa' tarefa_id=tarefa.id %}" method="POST">
                                                 {% csrf_token %}
                                                 <button type="submit" class="btn btn-danger btn-sm">
                                                     <i class="fas fa-trash"></i> Apagar
@@ -67,17 +67,17 @@
                             </ul>
                             <nav>
                                 <ul class="pagination justify-content-center">
-                                    {% if tarefa_pendentes.has_previous %}
+                                    {% if tarefas_pendentes.has_previous %}
                                         <li class="page-item">
-                                            <a class="page-link" href="?pendentes_page={{ tarefa_pendentes.previous_page_number }}">Anterior</a>
+                                            <a class="page-link" href="?pendentes_page={{ tarefas_pendentes.previous_page_number }}">Anterior</a>
                                         </li>
                                     {% endif %}
                                     <li class="page-item disabled">
-                                        <span class="page-link">Página {{ tarefa_pendentes.number }} de {{ tarefa_pendentes.paginator.num_pages }}</span>
+                                        <span class="page-link">Página {{ tarefas_pendentes.number }} de {{ tarefas_pendentes.paginator.num_pages }}</span>
                                     </li>
-                                    {% if tarefa_pendentes.has_next %}
+                                    {% if tarefas_pendentes.has_next %}
                                         <li class="page-item">
-                                            <a class="page-link" href="?pendentes_page={{ tarefa_pendentes.next_page_number }}">Próxima</a>
+                                            <a class="page-link" href="?pendentes_page={{ tarefas_pendentes.next_page_number }}">Próxima</a>
                                         </li>
                                     {% endif %}
                                 </ul>
@@ -100,14 +100,14 @@
                                         <span class="flex-grow-1">{{ tarefa.nome }}</span>
                                         <div class="btn-group ms-3">
                                             <!-- Botão Retornar para Pendente -->
-                                            <form action="{% url 'base:detalhe' tarefa_id=tarefa.id %}" method="POST" class="me-1">
+                                            <form action="{% url 'base:marcar_como_pendente' tarefa_id=tarefa.id %}" method="POST">
                                                 {% csrf_token %}
                                                 <button type="submit" class="btn btn-warning btn-sm">
                                                     <i class="fas fa-undo"></i> Pendente
                                                 </button>
                                             </form>
                                             <!-- Botão Apagar -->
-                                            <form action="{% url 'base:apagar' tarefa_id=tarefa.id %}" method="POST">
+                                            <form action="{% url 'base:apagar_tarefa' tarefa_id=tarefa.id %}" method="POST">
                                                 {% csrf_token %}
                                                 <button type="submit" class="btn btn-danger btn-sm">
                                                     <i class="fas fa-trash"></i> Apagar
