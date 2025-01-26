@@ -21,6 +21,23 @@
     button, .btn {
         font-size: 0.9rem;
     }
+
+    .footer .col-12 {
+        margin-bottom: 10px; /* Reduzir o espaçamento entre as colunas */
+    }
+    .footer h5 {
+        font-size: 1rem; /* Reduzir o tamanho da fonte do título */
+    }
+    .footer p, .footer small, .footer a {
+        font-size: 0.9rem; /* Reduzir o tamanho da fonte do texto */
+    }
+    .footer {
+        text-align: left; /* Alinhar o texto à esquerda em telas pequenas */
+    }
+    .footer a {
+        padding: 5px 0; /* Aumentar a área clicável dos links */
+        display: inline-block;
+    }
 }
 
 /* Dispositivos médios (tablets) */
