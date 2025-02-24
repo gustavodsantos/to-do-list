@@ -52,9 +52,6 @@ Certifique-se de ter as ferramentas abaixo instaladas:
 4. Acesse o projeto no navegador:
    [http://localhost](http://localhost)
 
-> **Dica**: Você também pode acessar o projeto na instância configurada do EC2. Use o link abaixo:
-   [Projeto ao vivo](http://ec2-3-86-142-4.compute-1.amazonaws.com)
-
 ## Testes
 Rode os testes para garantir que o projeto funcione corretamente:
 ```bash
